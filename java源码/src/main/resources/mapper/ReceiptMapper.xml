@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.ReceiptMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.pojo.Receipt">
+            <id property="rid" column="rid" jdbcType="INTEGER"/>
+            <result property="did" column="did" jdbcType="INTEGER"/>
+            <result property="type" column="type" jdbcType="INTEGER"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="administrator" column="administrator" jdbcType="VARCHAR"/>
+            <result property="time" column="time" jdbcType="TIMESTAMP"/>
+            <result property="version" column="version" jdbcType="INTEGER"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        rid,did,type,
+        number,administrator,time,
+        version,is_deleted
+    </sql>
+
+    <select id="selectReceipts" resultType="java.util.Map">
+        select r.rid,d.dname,r.type,r.number,r.administrator,date_format(r.time,'%Y-%m-%d') as time
+        from receipt r join drug d
+        on r.did = d.did
+        where r.is_deleted=0
+            and d.dname like concat('%',#{ReceiptPage.keyword},'%')
+    </select>
+</mapper>

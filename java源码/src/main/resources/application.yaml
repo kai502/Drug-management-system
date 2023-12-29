@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: '000000'
+      url: jdbc:mysql:///drugadministrationdb
+  jackson:
+    #24小时制
+    date-format: yyyy-MM-dd
+    #设置东八时区
+    time-zone: GMT+8
+
+mybatis-plus:
+  type-aliases-package: org.example.pojo
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      id-type: auto
+#      table-prefix:
+
+#jwt配置
+jwt:
+  token:
+    tokenExpiration: 60 #有效时间,单位分钟
+    tokenSignKey: userTokenKey  #当前程序签名秘钥 自定义

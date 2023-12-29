@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.SupplierMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.pojo.Supplier">
+            <id property="sid" column="sid" jdbcType="INTEGER"/>
+            <result property="sname" column="sname" jdbcType="VARCHAR"/>
+            <result property="phonenumber" column="phoneNumber" jdbcType="BIGINT"/>
+            <result property="version" column="version" jdbcType="INTEGER"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sid,sname,phoneNumber,
+        version,is_deleted
+    </sql>
+</mapper>
